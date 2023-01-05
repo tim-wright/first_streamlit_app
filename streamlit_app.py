@@ -20,8 +20,11 @@ fruits_to_display = my_fruit_list.loc[fruit_selection]
 if fruits_to_display.size > 0:
   streamlit.dataframe(fruits_to_display)
  
+
 streamlit.header('Fruityvice Food Advice!')
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
+fruit_choice = streamlit.text_input('What fruit would you like info about?', 'Kiwi')
+streamlit.write('The user entered: ' fruit_choice)
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 
 
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
