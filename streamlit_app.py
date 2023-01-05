@@ -1,5 +1,6 @@
 import streamlit
 import pandas
+import requests
 
 streamlit.title('My Parents New Healthy Diner')
 
@@ -18,3 +19,7 @@ fruits_to_display = my_fruit_list.loc[fruit_selection]
 
 if fruits_to_display.size > 0:
   streamlit.dataframe(fruits_to_display)
+ 
+streamlit.header('Fruityvice Food Advice!')
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+streamlit.text(fruityvice_response.json())
